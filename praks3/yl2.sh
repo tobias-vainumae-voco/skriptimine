@@ -1,36 +1,23 @@
 #!/bin/bash
 
-# Skript arvutab küpsisetordi jaoks vajalike küpsisepakkide arvu.
+# Skript arvutab, mitu pakki küpsiseid on tordi jaoks vaja.
 
-echo "Kupsisetordi arvutamine"
-echo
+read -p "Kandiku pikkus cm: " kandik_pikkus
+read -p "Kandiku laius cm: " kandik_laius
+read -p "Küpsise pikkus cm: " kypsis_pikkus
+read -p "Küpsise laius cm: " kypsis_laius
+read -p "Mitu kihti tordil on? " kihid
+read -p "Mitu küpsist on ühes pakis? " pakis
 
-echo -n "Sisesta aluskandiku pikkus cm: "
-read kandiku_pikkus
+# Jagab kandiku mõõdud küpsise mõõtudega ja ümardab ülespoole.
+pikkuses=$(expr \( $kandik_pikkus + $kypsis_pikkus - 1 \) / $kypsis_pikkus)
+laiuses=$(expr \( $kandik_laius + $kypsis_laius - 1 \) / $kypsis_laius)
 
-echo -n "Sisesta aluskandiku laius cm: "
-read kandiku_laius
-
-echo -n "Sisesta kupsise pikkus cm: "
-read kupsise_pikkus
-
-echo -n "Sisesta kupsise laius cm: "
-read kupsise_laius
-
-echo -n "Mitu kihti soovid teha? "
-read kihid
-
-echo -n "Mitu kupsist on ühes pakis? "
-read pakis
-
-pikkuses=$(expr \( $kandiku_pikkus + $kupsise_pikkus - 1 \) / $kupsise_pikkus)
-
-laiuses=$(expr \( $kandiku_laius + $kupsise_laius - 1 \) / $kupsise_laius)
-
+# Korrutab ühe kihi küpsiste arvu kihtide arvuga.
 kokku=$(expr $pikkuses \* $laiuses \* $kihid)
 
+# Jagab küpsiste koguarvu pakis olevate küpsiste arvuga ja ümardab ülespoole.
 pakke=$(expr \( $kokku + $pakis - 1 \) / $pakis)
 
-echo
-echo "Kokku on vaja $kokku kupsist."
-echo "Poest tuleb osta $pakke pakki kupsiseid."
+echo "Kokku läheb vaja $kokku küpsist."
+echo "Poest tuleb osta $pakke pakki küpsiseid."
