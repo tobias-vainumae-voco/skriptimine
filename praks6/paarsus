@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Skript kontrollib käsurealt antud täisarvu paarsust.
+
+if [ "$#" -ne 1 ] # $# näitab argumentide arvu, -ne tähendab "ei ole võrdne".
+then
+    echo "Käivita see skript koos arvuga, mille paarsust soovid kontrollida. Näiteks: ./paarsus 3"
+else
+    if (( $1 % 2 == 0 )) # % leiab jagamise jäägi.
+    then
+        echo "Antud arv on paaris"
+    else
+        echo "Antud arv on paaritu"
+    fi
+fi	
