@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Skript tervitab kasutajat vastavalt sisestatud kellaajale.
+
+read -p "Sisesta aja väärtus: " aeg
+
+if [ "$aeg" -ge 6 ] && [ "$aeg" -lt 12 ]
+then
+    echo "Tere hommikust"
+elif [ "$aeg" -ge 12 ] && [ "$aeg" -lt 18 ]
+then
+    echo "Tere päevast"
+elif [ "$aeg" -ge 18 ] && [ "$aeg" -lt 22 ]
+then
+    echo "Tere õhtust"
+elif [ "$aeg" -ge 22 ] && [ "$aeg" -le 23 ] || [ "$aeg" -ge 0 ] && [ "$aeg" -lt 6 ] # || ühendab kaks öist ajavahemikku.
+then
+    echo "Head ööd!"
+else
+    echo "Vigane kellaaeg"
+fi
